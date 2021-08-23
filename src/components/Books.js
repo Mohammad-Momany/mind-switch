@@ -1,8 +1,9 @@
 import React from 'react'
+
 import './Book.css';
 
 const Books = ({data}) => {
-    const {title, previewLink, imageLinks, description, categories, authors, pageCount , publishedDate, publisher} = data;
+    const {title, previewLink, imageLinks, description, categories, authors, pageCount, publishedDate, publisher} = data;
     return (
     <div className="book">
         <div className="image-contant">
@@ -19,8 +20,6 @@ const Books = ({data}) => {
     <span className="pageCount">{pageCount}</span>
     </div>
     <div className="publisher">{publisher}</div>
-    {/* <span>{categories}</span> */}
-    {/* <span>{publishedDate}</span> */}
     </div>
     <div className="book-overview">
         <h3>Overview</h3>
