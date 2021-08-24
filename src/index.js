@@ -6,7 +6,6 @@ import App from './App';
 ReactDOM.render(
   <React.StrictMode>
     <BookProvider>
-
     <App />
     </BookProvider>
 

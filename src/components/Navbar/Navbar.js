@@ -1,7 +1,5 @@
 import {useContext}  from 'react'
-
 import { Input } from '@material-ui/core';
-
 import { InputContext } from '../BookContext';
 
 import './Navbar.scss'
