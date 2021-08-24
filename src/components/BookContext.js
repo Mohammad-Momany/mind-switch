@@ -1,39 +1,52 @@
-import React,{useState,useEffect,createContext} from 'react';
+import React,{useState,useEffect,useMemo, createContext,} from 'react';
 import axios  from 'axios';
 
 
 export const BookContext = createContext();
 export const InputContext = createContext();
 
-export const BookProvider = props => {
+export const BookProvider = ({children}) => {
   
-    const APP_KEY = "AIzaSyBswzUbSbQ-eroJXoLtzRlAG8LWIMIr0k8";
-    const [result,setResult] = useState([]);
-    const [book,setBook] = useState("Javascript");
-    const URL = `https://www.googleapis.com/books/v1/volumes?q=${book}&key=${APP_KEY}&maxResults=16`;
+  const APP_KEY = "AIzaSyBswzUbSbQ-eroJXoLtzRlAG8LWIMIr0k8";
 
 
-
-    const getBooks = async () => {
-
-      if (!book) return setBook("Javascript");
-    
-      const { data } = await axios.get(URL);
-    
-      setResult(data.items);
-    };
+  const [book, setBook] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("React");
 
 
-    useEffect(() => {
-    
-      getBooks()
-    
-    }, [book])
+  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${APP_KEY}&maxResults=16`;
+
+
+  const getBooks = async () => {
+
+    if (!book) return setQuery("Javascript");
+  
+    const { data } = await axios.get(URL);
+  
+    setBook(data.items);
+  };
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    setQuery(search);
+    setSearch("");
+  };
+
+
+  useEffect(() => {
+  
+    getBooks()
+  
+  }, [query])
+
 
     return (
-        <BookContext.Provider value={[result,setResult]} >
-        <InputContext.Provider value={[book,setBook]}  >
-            {props.children}
+        <BookContext.Provider value={[book, setBook] } >
+        <InputContext.Provider value={{search, setSearch,getSearch}} >
+        
+            {children}
+        
         </InputContext.Provider>
         </BookContext.Provider>
     )

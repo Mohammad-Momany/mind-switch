@@ -1,28 +1,33 @@
-import React,{useContext} from 'react'
-import {InputContext}  from '../BookContext'
+import {useContext}  from 'react'
 
 import { Input } from '@material-ui/core';
 
+import { InputContext } from '../BookContext';
+
 import './Navbar.scss'
+
 
 const Navbar = () =>{
 
-const [book,setBook] =  useContext(InputContext)
+const {search,setSearch, getSearch} = useContext(InputContext)
 
 return (
 
-        <header>
+  <nav>
+    <h1>Read book &#8594; opinion Switch </h1>
+    <form onSubmit={getSearch} className="search-form">
+    <Input onChange={(e) => setSearch(e.target.value)}
+      placeholder="Book, Author" 
+      className="search-box" type="text"
+      inputProps={{ 'aria-label': 'description' }} 
+      required 
+      value={search}
+      autoComplete="false"
+    />
+    <button type="submit">search</button>
+    </form>
+  </nav>
 
-        <h1>Read book &#8594; opinion Switch </h1>
-
-        <Input onChange={(e) => setBook(e.target.value)}
-          placeholder="Book, Author" 
-          className="search-box" type="text"
-          inputProps={{ 'aria-label': 'description' }} 
-          required 
-          autoComplete="false"
-        />
-      </header>
     )
 }
 

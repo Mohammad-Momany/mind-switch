@@ -10,29 +10,38 @@ const Books = ({title, previewLink, imageLinks, description, authors, pageCount,
     
 
     useEffect(() => {
-        Aos.init({ duration: 1000,offset:30});
+        
+        Aos.init({ duration: 1000, offset:35, once:true});
+    
     }, []);
 
 
     return (
-        <div className='book' data-aos="fade-up" data-aos-easing="ease-in-out-back">
+        <div className='book' data-aos="fade-up" data-aos-easing="ease-in-out-back" data-aos-once='false'>
 
-            <div className="book__image__contant" data-aos="zoom-in" data-aos-duration="1500" data-aos-once='true' >
-                <a target="_blank" href={previewLink} >
-                    <img src={imageLinks?.thumbnail || photoNotFound} alt={title} className="book__image__contant--img" />
+            <div className="book__image__contant" data-aos="zoom-in" data-aos-duration='1500'>
+
+                <a target="_blank" href={previewLink}>
+                    <img 
+                        src={imageLinks?.thumbnail || photoNotFound} 
+                        alt={title} 
+                        className="book__image__contant--img" 
+                    />
                 </a>
+
             </div>
 
             <div className="book__info">
+
                 <h3 className="book__info--title" data-aos="fade-right" data-aos-duration="1800">{title}</h3>
                 <address className="book__info--author">Author: {authors? authors[0]: "unknown"}</address>
                 <span className="book__info--pageCount">{pageCount}</span>
                 
                 <div className="book__info--publisher">
-                                Publisher: <br/>
-                                {publisher?  
-                                    <span style={{marginLeft:'5px'}}>{publisher} </span> :"unknown"
-                                }
+                    Publisher: <br/>
+                        {publisher?  
+                            <span style={{marginLeft:'5px'}}>{publisher} </span> :"unknown"
+                        }
                 </div>
                 
             </div>
