@@ -15,9 +15,6 @@ export const BookProvider = ({children}) => {
   const [query, setQuery] = useState("React");
   const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${bookFilter && `&filter=${bookFilter}`}&key=${APP_KEY}&maxResults=16`;
   
-  console.log(bookFilter);
-  console.log(URL);
-  
   
   const Options = ()=> {
     return (  
@@ -27,9 +24,8 @@ export const BookProvider = ({children}) => {
             <option value="free-ebooks">Free</option>
             <option value="paid-ebooks">Paid</option>
         </select>
-     </div>)
-  
-}
+     </div>) 
+    }
   
 
   const controllNavabr = () => { 
