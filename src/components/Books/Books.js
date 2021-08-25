@@ -21,7 +21,7 @@ const Books = ({title, previewLink, imageLinks, description, authors, pageCount,
 
             <div className="book__image__contant" data-aos="zoom-in" data-aos-duration='1500'>
 
-                <a target="_blank" href={previewLink}>
+                <a target="_blank" href={previewLink} className="book__image__contant--link">
                     <img 
                         src={imageLinks?.thumbnail || photoNotFound} 
                         alt={title} 
@@ -31,7 +31,7 @@ const Books = ({title, previewLink, imageLinks, description, authors, pageCount,
 
             </div>
 
-            <div className="book__info">
+            <div className="book__info ">
 
                 <h3 className="book__info--title" data-aos="fade-right" data-aos-duration="1800">{title}</h3>
                 <address className="book__info--author">Author: {authors? authors[0]: "unknown"}</address>

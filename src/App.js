@@ -15,7 +15,7 @@ const book = useContext(BookContext)
     <div className="app">
     
       <Navbar/>
-      <main className="book__container">
+      <main className="book__container ">
 
         {book.map(({volumeInfo, id}) => (
            <Books key={id} {...volumeInfo}  />

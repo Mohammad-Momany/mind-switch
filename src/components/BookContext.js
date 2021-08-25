@@ -14,18 +14,19 @@ export const BookProvider = ({children}) => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("React");
   const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${bookFilter && `&filter=${bookFilter}`}&key=${APP_KEY}&maxResults=16`;
-  
+
   
   const Options = ()=> {
     return (  
       <div className="box">
         <select value={bookFilter} onChange= {(e)=> setBookFilter(e.target.value)}>
-            <option selected>All</option>
+            <option value="">All</option>
             <option value="free-ebooks">Free</option>
             <option value="paid-ebooks">Paid</option>
         </select>
-     </div>) 
-    }
+     </div>)
+  
+}
   
 
   const controllNavabr = () => { 

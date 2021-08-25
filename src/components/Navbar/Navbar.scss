@@ -74,7 +74,10 @@
     &__logo__countiner {
         display: flex;
         justify-self: flex-start;
-        width: 45%;
+        width: 50%;
+          @media only screen and (min-device-width: 600px) and (max-device-width: 1230px)  {
+              width:65%;
+          }
         &--image {
             width:100%;
             padding:0 1rem;
@@ -85,41 +88,48 @@
 
 
   
-  .box select {
+  .box {
 
-    background-color: #263238cc;
-    color: white;
-    padding: 12px;
-    width: 70%;
-    border: none;
-    font-size: 20px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-    -webkit-box-sizing: border-box;
-    -webkit-appearance: none;
-    box-sizing: border-box;
-    border-radius: 5px;
+    & select {
 
-    background-image:
-    linear-gradient(45deg, transparent 50%, #b5d1dfcc 50%),
-    linear-gradient(135deg, #adccdbcc 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    100% 0;
-  background-size:
-    5px 5px,
-    5px 5px;
-  background-repeat: no-repeat;
+      background-color: #263238cc;
+      color: white;
+      padding: 12px;
+      width: 70%;
+      border: none;
+      font-size: 20px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+      -webkit-box-sizing: border-box;
+      -webkit-appearance: none;
+      box-sizing: border-box;
+      border-radius: 5px;
+  
+      background-image:
+      linear-gradient(45deg, transparent 50%, #b5d1dfcc 50%),
+      linear-gradient(135deg, #adccdbcc 50%, transparent 50%);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      100% 0;
+    background-size:
+      5px 5px,
+      5px 5px;
+    background-repeat: no-repeat;
+
+
+    &:hover {
+      opacity: .8;
+    }
+
+    & option {
+      padding: 30%;
+    }
+    
+    }
+
+    
   }
   
-  .box select:hover {
-    opacity: .8;
-  }
   
-  .box select option {
-    padding: 35px;
-  }
-address {
-    font-style: normal;
-}
+
 
