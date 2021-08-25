@@ -1,33 +1,49 @@
 import {useContext}  from 'react'
-import { Input } from '@material-ui/core';
 import { InputContext } from '../BookContext';
+import Mind_switch_logo  from '../images/logo_transparent.png';
 
+import '../../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import './Navbar.scss'
-
 
 const Navbar = () =>{
 
-const {search,setSearch, getSearch} = useContext(InputContext)
+const {search,setSearch, getSearch,navBackground} = useContext(InputContext)
+
 
 return (
 
-  <nav>
-    <h1>Read book &#8594; opinion Switch </h1>
-    <form onSubmit={getSearch} className="search-form">
-    <Input onChange={(e) => setSearch(e.target.value)}
+  <nav className={`nav ${navBackground && 'nav--background'}`} >
+    <div className="nav__logo__countiner">
+    <img src={Mind_switch_logo} alt="Mind_switch_logo" className="nav__logo__countiner--image"/>
+    </div>
+    <form onSubmit={getSearch} className="nav__search-form">
+
+    <input onChange={(e) => setSearch(e.target.value)}
       placeholder="Book, Author" 
-      className="search-box" type="text"
-      inputProps={{ 'aria-label': 'description' }} 
+      className="nav__search-form--input" type="text"
       required 
       value={search}
       autoComplete="false"
     />
-    <button type="submit">search</button>
-    </form>
-  </nav>
 
+    <button title="Search" type="submit" className="nav__search-form--button ">
+    <i className="fas fa-search"></i>
+    </button>
+    </form>
+
+    <div className="box">
+    <select>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+      <option>Option 4</option>
+      <option>Option 5</option>
+    </select>
+</div>
+  </nav>
     )
 }
 
 
 export default Navbar
+

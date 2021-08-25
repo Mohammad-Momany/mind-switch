@@ -1,4 +1,4 @@
-import React,{useEffect}  from 'react';
+import {useEffect}  from 'react';
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -11,7 +11,7 @@ const Books = ({title, previewLink, imageLinks, description, authors, pageCount,
 
     useEffect(() => {
         
-        Aos.init({ duration: 1000, offset:35, once:true});
+        Aos.init({ duration: 1000, offset:50, once:true});
     
     }, []);
 

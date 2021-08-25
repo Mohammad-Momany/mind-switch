@@ -8,21 +8,21 @@ import './App.scss';
 
 const App = () => {
 
-const [book, setBook] = useContext(BookContext)
+const book = useContext(BookContext)
 
-    return (
+  return (
     
-      <div className="app">
-      
-        <Navbar/>
-        <main className="book__container">
+    <div className="app">
+    
+      <Navbar/>
+      <main className="book__container">
 
-          {book.map(({volumeInfo, id}) => (
-             <Books key={id} {...volumeInfo}  />
-          ))}
+        {book.map(({volumeInfo, id}) => (
+           <Books key={id} {...volumeInfo}  />
+        ))}
         </main>
 
-      </div>
+    </div>
 );
 }
 
