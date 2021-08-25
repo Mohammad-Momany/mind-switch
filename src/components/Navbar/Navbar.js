@@ -5,15 +5,15 @@ import Mind_switch_logo  from '../images/logo_transparent.png';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import './Navbar.scss'
 
-const {search,setSearch, getSearch,navBackground,Options} = useContext(InputContext)
 const Navbar = () =>{
 
+const {search,setSearch, getSearch,navBackground,Options} = useContext(InputContext)
 
 
 return (
 
   <nav className={`nav ${navBackground && 'nav--background'}`} >
-
+    
     <div className="nav__logo__countiner">
       <img src={Mind_switch_logo} alt="Mind_switch_logo" className="nav__logo__countiner--image"/>
     </div>
