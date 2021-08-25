@@ -7,7 +7,7 @@ import './Navbar.scss'
 
 const Navbar = () =>{
 
-const {search,setSearch, getSearch,navBackground} = useContext(InputContext)
+const {search,setSearch, getSearch,navBackground,Options} = useContext(InputContext)
 
 
 return (
@@ -30,16 +30,7 @@ return (
     <i className="fas fa-search"></i>
     </button>
     </form>
-
-    <div className="box">
-    <select>
-      <option>Option 1</option>
-      <option>Option 2</option>
-      <option>Option 3</option>
-      <option>Option 4</option>
-      <option>Option 5</option>
-    </select>
-</div>
+     <Options/>
   </nav>
     )
 }

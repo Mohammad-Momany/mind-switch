@@ -9,15 +9,33 @@ export const BookProvider = ({children}) => {
   
   const APP_KEY = "AIzaSyBswzUbSbQ-eroJXoLtzRlAG8LWIMIr0k8";
   const [navBackground,setNavBackground] = useState(false)
+  const [bookFilter,setBookFilter] = useState("")
   const [book, setBook] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("React");
-  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${APP_KEY}&maxResults=16`;
+  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${bookFilter && `&filter=${bookFilter}`}&key=${APP_KEY}&maxResults=16`;
+  
+  console.log(bookFilter);
+  console.log(URL);
+  
+  
+  const Options = ()=> {
+    return (  
+      <div className="box">
+        <select value={bookFilter} onChange= {(e)=> setBookFilter(e.target.value)}>
+            <option selected>All</option>
+            <option value="free-ebooks">Free</option>
+            <option value="paid-ebooks">Paid</option>
+        </select>
+     </div>)
+  
+}
   
 
   const controllNavabr = () => { 
 
-    window.scrollY > 126 ? setNavBackground(true) : setNavBackground(false)
+    window.scrollY > 126 ? setNavBackground(true) : setNavBackground(false);
+
   }
 
   const getBooks = async () => {
@@ -38,17 +56,21 @@ export const BookProvider = ({children}) => {
 
 
   useEffect(() => {
+
     getBooks()
     window.addEventListener('scroll',controllNavabr)  
+    
+    return () => {
+      window.removeEventListener('scroll',controllNavabr) 
+    }
+  }, [query,bookFilter])
 
-  return () => {
-    window.removeEventListener('scroll',controllNavabr)  
-  }
-  }, [query])
+
+
 
     return (
         <BookContext.Provider value={book} >
-        <InputContext.Provider value={{search, setSearch,getSearch,navBackground}} >
+        <InputContext.Provider value={{search, setSearch,getSearch,navBackground, Options}} >
         
             {children}
         
