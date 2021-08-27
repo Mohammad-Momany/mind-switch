@@ -13,7 +13,7 @@ export const BookProvider = ({children}) => {
   const [book, setBook] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("React");
-  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${bookFilter && `&filter=${bookFilter}`}&key=${APP_KEY}&maxResults=16`;
+  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${bookFilter && `&filter=${bookFilter}`}&key=${APP_KEY}&maxResults=20`;
 
   
   const Options = ()=> {

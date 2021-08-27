@@ -121,6 +121,9 @@
       opacity: .8;
     }
 
+    &:focus-visible {
+      outline: none; 
+    }
     & option {
       padding: 30%;
     }
