@@ -1,77 +1,80 @@
-import {useState, useEffect, createContext} from 'react';
-import axios  from 'axios';
+import { useEffect, createContext } from "react";
+import { useImmerReducer } from "use-immer";
+import axios from "axios";
 
+export const StateContext = createContext();
+export const DispatchContext = createContext();
 
-export const BookContext = createContext();
-export const InputContext = createContext();
+function bookInformations(draft, action) {
+  switch (action.type) {
+    case "isLoading":
+      return void (draft.isLoading = action.payload);
 
-export const BookProvider = ({children}) => {
-  
-  const APP_KEY = "AIzaSyBswzUbSbQ-eroJXoLtzRlAG8LWIMIr0k8";
-  const [navBackground,setNavBackground] = useState(false)
-  const [bookFilter,setBookFilter] = useState("")
-  const [book, setBook] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("React");
-  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${bookFilter && `&filter=${bookFilter}`}&key=${APP_KEY}&maxResults=20`;
+    case "showNav":
+      return void (draft.navBackground = action.payload);
 
-  
-  const Options = ()=> {
-    return (  
-      <div className="box">
-        <select value={bookFilter} onChange= {(e)=> setBookFilter(e.target.value)}>
-            <option value="">All</option>
-            <option value="free-ebooks">Free</option>
-            <option value="paid-ebooks">Paid</option>
-        </select>
-     </div>)
-  
-}
-  
+    case "booksFilter":
+      return void (draft.booksFilter = action.payload);
 
-  const controllNavabr = () => { 
+    case "booksData":
+      return void (draft.books = action.payload);
 
-    window.scrollY > 126 ? setNavBackground(true) : setNavBackground(false);
+    case "inputValue":
+      return void (draft.search = action.payload);
 
+    case "bookSearching":
+      return void (draft.query = action.payload);
+
+    default:
+      break;
   }
+}
+
+const initialState = {
+  navBackground: false,
+  booksFilter: "",
+  books: [],
+  search: "",
+  query: "React",
+  isLoading: false,
+};
+
+export const BookProvider = ({ children }) => {
+  const [state, dispatch] = useImmerReducer(bookInformations, initialState);
+
+  const { booksFilter, search, query } = state;
+
+  const APP_KEY = "AIzaSyBswzUbSbQ-eroJXoLtzRlAG8LWIMIr0k8";
+  const URL = `https://www.googleapis.com/books/v1/volumes?q=${query}${ booksFilter && `&filter=${booksFilter}`}&key=${APP_KEY}&maxResults=20`;
+
+  const onScroll = () =>
+    window.addEventListener("scroll", () =>
+      dispatch({ type: "showNav", payload: window.scrollY > 126 })
+    );
 
   const getBooks = async () => {
-
-    if (!book) return setQuery("React");
-  
+    dispatch({ type: "isLoading", payload: false });
     const { data } = await axios.get(URL);
-  
-    setBook(data.items);
-  };
-  
-  const getSearch = (e) => {
-    
-    e.preventDefault();
-    setQuery(search);
-    setSearch("");
+    dispatch({ type: "isLoading", payload: true });
+    dispatch({ type: "booksData", payload: data.items });
   };
 
+  const getSearch = (e) => {
+    e.preventDefault();
+    dispatch({ type: "bookSearching", payload: search });
+    dispatch({ type: "inputValue", payload: "" });
+  };
 
   useEffect(() => {
+    getBooks();
+    onScroll();
+  }, [query, booksFilter]);
 
-    getBooks()
-    window.addEventListener('scroll',controllNavabr)  
-    
-    return () => {
-      window.removeEventListener('scroll',controllNavabr) 
-    }
-  }, [query,bookFilter])
-
-
-
-
-    return (
-        <BookContext.Provider value={book} >
-        <InputContext.Provider value={{search, setSearch,getSearch,navBackground, Options}} >
-        
-            {children}
-        
-        </InputContext.Provider>
-        </BookContext.Provider>
-    )
-}
+  return (
+    <DispatchContext.Provider value={dispatch}>
+      <StateContext.Provider value={{ state, getSearch }}>
+        {children}
+      </StateContext.Provider>
+    </DispatchContext.Provider>
+  );
+};

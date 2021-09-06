@@ -1,29 +1,29 @@
-import {useContext}  from 'react'
+import { useContext } from "react";
 
-import Books  from './components/Books/Books'
-import Navbar  from './components/Navbar/Navbar'
-import {BookContext}  from './components/BookContext'
+import Books from "./components/Books/Books";
+import Loading from "./components/LoadingAnimations/Loading";
+import Navbar from "./components/Navbar/Navbar";
+import { StateContext } from "./components/BookContext";
 
-import './App.scss';
+import "./App.scss";
 
 const App = () => {
-
-const book = useContext(BookContext)
+  const { state } = useContext(StateContext);
+  const { books, isLoading } = state;
 
   return (
-    
     <div className="app">
-    
-      <Navbar/>
-      <main className="book__container ">
+      <Navbar />
 
-        {book.map(({volumeInfo, id}) => (
-           <Books key={id} {...volumeInfo}  />
-        ))}
-        </main>
-
+      <main className="book__container">
+        {isLoading ? (
+          books.map(({ volumeInfo, id }) => <Books key={id} {...volumeInfo} />)
+        ) : (
+          <Loading></Loading>
+        )}
+      </main>
     </div>
-);
-}
+  );
+};
 
 export default App;
