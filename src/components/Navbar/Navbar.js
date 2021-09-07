@@ -1,23 +1,32 @@
 import { useContext } from "react";
-import { StateContext } from "../BookContext";
+import { DispatchContext, StateContext } from "../Context/BookContext";
 
 import Logo from "./Logo/Logo";
-import Form from "./Form/Form";
+import SearchBar from "./SearchBar/SearchBar";
 import FilterOptions from "./FilterOptions/FilterOptions";
 
 import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import "./Navbar.scss";
 
 const Navbar = () => {
-  const { state } = useContext(StateContext);
-
-  const { navBackground } = state;
+  const dispatch = useContext(DispatchContext);
+  const {
+    state: { navBackground, search, booksFilter },
+    getSearch,
+  } = useContext(StateContext);
 
   return (
     <nav className={`nav ${navBackground && "nav--background"}`}>
       <Logo></Logo>
-      <Form></Form>
-      <FilterOptions></FilterOptions>
+      <SearchBar
+        dispatch={dispatch}
+        search={search}
+        getSearch={getSearch}
+      ></SearchBar>
+      <FilterOptions
+        dispatch={dispatch}
+        booksFilter={booksFilter}
+      ></FilterOptions>
     </nav>
   );
 };

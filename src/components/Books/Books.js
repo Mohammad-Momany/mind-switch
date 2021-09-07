@@ -9,7 +9,7 @@ import "./Book.scss";
 const Books = ({ title, previewLink, imageLinks, description, authors, pageCount, publisher }) => {
     
   useEffect(() => {
-    Aos.init({ duration: 1000, offset: 50, once: true });
+    Aos.init({ duration: 1000, offset: 55, once: true });
   }, []);
 
   return (
@@ -25,7 +25,7 @@ const Books = ({ title, previewLink, imageLinks, description, authors, pageCount
         data-aos-duration="1500"
       >
         <a
-          target="_blank"
+          target="opener"
           href={previewLink}
           className="book__image__contant--link"
         >

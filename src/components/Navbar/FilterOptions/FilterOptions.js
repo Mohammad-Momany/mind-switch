@@ -1,25 +1,17 @@
-import { useContext } from "react";
-import { StateContext, DispatchContext } from "../../BookContext";
+import Options from "./Options/Options";
 
 import "./FilterOptions.scss";
 
-const FilterOptions = () => {
-  const dispatch = useContext(DispatchContext);
-  const { state } = useContext(StateContext);
-
-  const { booksFilter } = state;
-
+const FilterOptions = ({ dispatch, booksFilter }) => {
   return (
-    <div className="box">
+    <div className="books-filter">
       <select
         value={booksFilter}
         onChange={(e) =>
           dispatch({ type: "booksFilter", payload: e.target.value })
         }
       >
-        <option value="">All</option>
-        <option value="free-ebooks">Free</option>
-        <option value="paid-ebooks">Paid</option>
+        <Options />
       </select>
     </div>
   );

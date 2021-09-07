@@ -1,4 +1,4 @@
-.box {
+.books-filter {
   & select {
     background-color: #263238cc;
     color: white;
@@ -25,9 +25,6 @@
 
     &:focus-visible {
       outline: none;
-    }
-    & option {
-      padding: 30%;
     }
   }
 }

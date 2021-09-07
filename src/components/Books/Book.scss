@@ -1,18 +1,19 @@
 .book {
   position: relative;
   overflow: hidden;
+  flex-grow: 1;
   background-color: darkslategrey;
-  width: calc(400px - 10%);
+  width: calc(400px - 10vw);
   margin: 1.2rem;
   border-radius: 15px;
   box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.15);
-
-  @media only screen and (min-device-width: 320px) and (max-device-width: 640px) {
-    margin: 50px;
+  @media only screen and (min-device-width: 320px) and (max-device-width: 730px) {
     width: 70%;
+    margin-block: 35px;
+    margin-inline: 70px;
     font-size: 15px;
   }
-
+  
   &__image__contant {
     display: flex;
     justify-content: center;
@@ -20,7 +21,7 @@
     @media only screen and (min-device-width: 600px) and (max-device-width: 1024px) {
       width: 50%;
     }
-
+    
     &--link {
       @media only screen and (min-device-width: 600px) and (max-device-width: 1024px) {
         margin-left: 85%;

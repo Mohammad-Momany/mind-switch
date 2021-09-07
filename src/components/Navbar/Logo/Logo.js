@@ -1,6 +1,7 @@
 import Mind_switch_logo from "../../images/logo_transparent.png";
 
 import "./Logo.scss";
+
 const Logo = () => {
   return (
     <div className="nav__logo__countiner">

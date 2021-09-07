@@ -1,13 +1,6 @@
-import { useContext } from "react";
-import { StateContext, DispatchContext } from "../../BookContext";
+import "./SearchBar.scss";
 
-import "./From.scss";
-
-const Form = () => {
-  const dispatch = useContext(DispatchContext);
-  const { state, getSearch } = useContext(StateContext);
-
-  const { search } = state;
+const SearchBar = ({ dispatch, getSearch, search }) => {
   return (
     <form onSubmit={getSearch} className="nav__search-form">
       <input
@@ -33,4 +26,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default SearchBar;

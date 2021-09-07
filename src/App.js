@@ -3,13 +3,13 @@ import { useContext } from "react";
 import Books from "./components/Books/Books";
 import Loading from "./components/LoadingAnimations/Loading";
 import Navbar from "./components/Navbar/Navbar";
-import { StateContext } from "./components/BookContext";
+import { StateContext } from "./components/Context/BookContext";
 
 import "./App.scss";
 
 const App = () => {
-  const { state } = useContext(StateContext);
-  const { books, isLoading } = state;
+  const { state:{ books, isLoading } } = useContext(StateContext);
+  
 
   return (
     <div className="app">
