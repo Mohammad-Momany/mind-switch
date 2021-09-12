@@ -6,8 +6,15 @@ import "aos/dist/aos.css";
 import photoNotFound from "../images/photoNotFound.png";
 import "./Book.scss";
 
-const Books = ({ title, previewLink, imageLinks, description, authors, pageCount, publisher }) => {
-    
+const Books = ({
+  title,
+  previewLink,
+  imageLinks,
+  description,
+  authors,
+  pageCount,
+  publisher,
+}) => {
   useEffect(() => {
     Aos.init({ duration: 1000, offset: 55, once: true });
   }, []);
@@ -52,11 +59,7 @@ const Books = ({ title, previewLink, imageLinks, description, authors, pageCount
 
         <div className="book__info--publisher">
           Publisher: <br />
-          {publisher ? (
-            <span style={{ marginLeft: "5px" }}>{publisher} </span>
-          ) : (
-            "unknown"
-          )}
+          {publisher ? <span>{publisher} </span> : "unknown"}
         </div>
       </div>
 

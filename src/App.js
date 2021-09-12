@@ -19,7 +19,7 @@ const App = () => {
         {isLoading ? (
           books.map(({ volumeInfo, id }) => <Books key={id} {...volumeInfo} />)
         ) : (
-          <Loading></Loading>
+          <Loading/>
         )}
       </main>
     </div>

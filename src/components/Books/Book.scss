@@ -7,13 +7,17 @@
   margin: 1.2rem;
   border-radius: 15px;
   box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.15);
-  @media only screen and (min-device-width: 320px) and (max-device-width: 730px) {
+  @media only screen and (min-device-width: 420px) and (max-device-width: 730px) {
     width: 70%;
     margin-block: 35px;
     margin-inline: 70px;
     font-size: 15px;
   }
-  
+  @media only screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    margin-block: 25px;
+    margin-inline: 30px;
+  }
+
   &__image__contant {
     display: flex;
     justify-content: center;
@@ -21,7 +25,7 @@
     @media only screen and (min-device-width: 600px) and (max-device-width: 1024px) {
       width: 50%;
     }
-    
+
     &--link {
       @media only screen and (min-device-width: 600px) and (max-device-width: 1024px) {
         margin-left: 85%;
@@ -53,6 +57,9 @@
 
     &--publisher {
       padding: 1rem 0;
+      & span {
+        margin-left: 5px;
+      }
     }
   }
 

@@ -1,9 +1,13 @@
+import optionsValue from "./optionsValue";
+
 const Options = () => {
   return (
     <>
-      <option value="">All</option>
-      <option value="free-ebooks">Free</option>
-      <option value="paid-ebooks">Paid</option>
+      {optionsValue.map(({ value, displayText }, i) => (
+        <option key={i} value={value}>
+          {displayText}
+        </option>
+      ))}
     </>
   );
 };
