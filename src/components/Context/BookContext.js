@@ -22,7 +22,9 @@ export const BookProvider = ({ children }) => {
 
   const getBooks = async () => {
     dispatch({ type: "isLoading", payload: false });
-    const { data: { items } } = await axios.get(URL);
+    const {
+      data: { items },
+    } = await axios.get(URL);
     dispatch({ type: "isLoading", payload: true });
     dispatch({ type: "booksData", payload: items });
   };

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -6,15 +6,8 @@ import "aos/dist/aos.css";
 import photoNotFound from "../images/photoNotFound.png";
 import "./Book.scss";
 
-const Books = ({
-  title,
-  previewLink,
-  imageLinks,
-  description,
-  authors,
-  pageCount,
-  publisher,
-}) => {
+const Books = ({ title, previewLink, imageLinks, description, authors, pageCount, publisher }) => {
+
   useEffect(() => {
     Aos.init({ duration: 1000, offset: 55, once: true });
   }, []);
@@ -71,4 +64,6 @@ const Books = ({
   );
 };
 
-export default Books;
+const PureBooks = memo(Books);
+
+export default PureBooks;
