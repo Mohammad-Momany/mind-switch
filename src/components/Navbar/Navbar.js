@@ -14,7 +14,7 @@ const Navbar = () => {
     state: { navBackground, search, booksFilter },
     getSearch,
   } = useContext(StateContext);
-
+ 
   return (
     <nav className={`nav ${navBackground && "nav--background"}`}>
       <Logo></Logo>
@@ -27,6 +27,7 @@ const Navbar = () => {
         dispatch={dispatch}
         booksFilter={booksFilter}
       ></FilterOptions>
+      
     </nav>
   );
 };

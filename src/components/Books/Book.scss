@@ -7,12 +7,14 @@
   margin: 1.2rem;
   border-radius: 15px;
   box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.15);
+
   @media only screen and (min-device-width: 420px) and (max-device-width: 730px) {
     width: 70%;
     margin-block: 35px;
     margin-inline: 70px;
     font-size: 15px;
   }
+
   @media only screen and (min-device-width: 320px) and (max-device-width: 420px) {
     margin-block: 25px;
     margin-inline: 30px;
@@ -22,6 +24,7 @@
     display: flex;
     justify-content: center;
     margin: 1rem 0;
+
     @media only screen and (min-device-width: 600px) and (max-device-width: 1024px) {
       width: 50%;
     }
@@ -31,11 +34,17 @@
         margin-left: 85%;
       }
     }
+
     &--img {
       min-width: 100%;
       height: 112%;
       border-radius: 5px;
       box-shadow: 10px 10px 5px rgba(28, 49, 66, 0.349);
+
+      &:hover {
+        transition: transform .2s ;
+        transform: scale(1.1);
+      }
     }
   }
 

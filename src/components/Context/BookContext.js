@@ -1,9 +1,10 @@
-import { useEffect, createContext } from "react";
+import { useEffect, createContext, useMemo } from "react";
 
 import { useImmerReducer } from "use-immer";
 import axios from "axios";
 
 import { booksReducer, initialState } from "./booksReducer";
+import ErrorBoundary from "../../ErrorBoundary";
 import url from "./url";
 
 export const StateContext = createContext();
@@ -13,7 +14,7 @@ export const BookProvider = ({ children }) => {
   const [state, dispatch] = useImmerReducer(booksReducer, initialState);
   const { booksFilter, search, query } = state;
 
-  const URL = url(query, booksFilter);
+  const URL = useMemo(() => url(query, booksFilter), [query, booksFilter]);
 
   const onScroll = () =>
     window.addEventListener("scroll", () =>
@@ -21,14 +22,16 @@ export const BookProvider = ({ children }) => {
     );
 
   const getBooks = async () => {
-    dispatch({ type: "isLoading", payload: false });
-    const {
-      data: { items },
-    } = await axios.get(URL);
-    dispatch({ type: "isLoading", payload: true });
-    dispatch({ type: "booksData", payload: items });
-  };
+    try {
+      const { data } = await axios.get(URL);
 
+      if (!data.items) throw "Book Not Found";
+
+      dispatch({ type: "booksData", payload: data.items });
+    } catch (error) {
+      dispatch({ type: "error", payload: error });
+    }
+  };
   const getSearch = (e) => {
     e.preventDefault();
     dispatch({ type: "bookSearching", payload: search });
@@ -36,13 +39,13 @@ export const BookProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getBooks();
     onScroll();
-  }, [query, booksFilter]);
+    getBooks();
+  }, [URL]);
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <StateContext.Provider value={{ state, getSearch }}>
+      <StateContext.Provider value={{ state, getSearch, ErrorBoundary }}>
         {children}
       </StateContext.Provider>
     </DispatchContext.Provider>

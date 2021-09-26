@@ -3,6 +3,9 @@ export const booksReducer = (draft, action) => {
     case "isLoading":
       return void (draft.isLoading = action.payload);
 
+    case "error":
+      return void (draft.error = action.payload);
+
     case "showNav":
       return void (draft.navBackground = action.payload);
 
@@ -30,4 +33,5 @@ export const initialState = {
   search: "",
   query: "React",
   isLoading: false,
+  error: null,
 };

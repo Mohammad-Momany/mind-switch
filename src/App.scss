@@ -17,16 +17,16 @@ body {
 
   &::-webkit-scrollbar-thumb {
     border-radius: 25px;
-    background-color: #415263;
-    border: 1px solid #634163;
+    background-color: #263238cc;
+    border: 1px solid #416363;
   }
+}
 
-  .book__container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10%;
-  }
+.error {
+  background-color: #efacac;
+  border: double 4px darkred;
+  color: darkred;
+  padding: 1em;
 }
 
 address {

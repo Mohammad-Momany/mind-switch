@@ -6,8 +6,15 @@ import "aos/dist/aos.css";
 import photoNotFound from "../images/photoNotFound.png";
 import "./Book.scss";
 
-const Books = ({ title, previewLink, imageLinks, description, authors, pageCount, publisher }) => {
-
+const Books = ({
+  title,
+  previewLink,
+  imageLinks,
+  description,
+  authors,
+  pageCount,
+  publisher,
+}) => {
   useEffect(() => {
     Aos.init({ duration: 1000, offset: 55, once: true });
   }, []);
